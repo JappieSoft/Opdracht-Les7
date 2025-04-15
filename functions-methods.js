@@ -16,13 +16,11 @@ function getEmailDomain(emailAddress) {
     return emailDomain;
 }
 
-/*const eeken = getEmailDomain("n.eeken@novi-education.nl")
-const mellink = getEmailDomain("t.mellink@novi.nl")
-const wiersma = getEmailDomain("a.wiersma@outlook.com")
 
-console.log(eeken);
-console.log(mellink);
-console.log(wiersma);*/
+console.log(getEmailDomain("n.eeken@novi-education.nl"));
+console.log(getEmailDomain("t.mellink@novi.nl"));
+console.log(getEmailDomain("a.wiersma@outlook.com"));
+
 
 
 /* Opdracht  2 */
@@ -52,15 +50,12 @@ function typeOfEmail(emailAddress){
 }
 
 
-/*const eeken = typeOfEmail("n.eeken@novi-education.nl");
-const mellink = typeOfEmail("t.mellink@novi.nl");
-const nlaapjesk = typeOfEmail("novi.nlaapjesk@outlook.com");
-const wiersma = typeOfEmail("a.wiersma@outlook.com");
+console.log(typeOfEmail("n.eeken@novi-education.nl"));
+console.log(typeOfEmail("t.mellink@novi.nl"));
+console.log(typeOfEmail("novi.nlaapjesk@outlook.com"));
+console.log(typeOfEmail("a.wiersma@outlook.com"));
 
-console.log(eeken);
-console.log(mellink);
-console.log(nlaapjesk);
-console.log(wiersma);*/
+
 
 
 /* Opdracht  3 */
@@ -76,22 +71,21 @@ console.log(wiersma);*/
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
 
+
 function checkEmailValidity(emailAddress){
     let emailValidity;
-    let puntCheck = emailAddress.lastIndexOf(".");
-    let atDomain = emailAddress.lastIndexOf("@");
-    let domainPunt = emailAddress.substring(atDomain);
+    let atPosition = emailAddress.lastIndexOf("@");
+    let puntPostion = emailAddress.lastIndexOf(".");
 
+    if (emailAddress.substring(atPosition).includes("@")){
+        if (emailAddress.substring(atPosition).includes(".")){
+            if (emailAddress.substring(puntPostion).length > 1){
+                emailValidity = true;
+            } else { emailValidity = false; }
+        } else { emailValidity = false; }
+    } else { emailValidity = false; }
 
-
-    if (emailAddress.includes("@")){
-        emailValidity = true ;
-    } else {
-        emailValidity = false ;
-    }
-
-
-    return [emailValidity, atDomain, puntCheck, domainPunt] ;
+    return [emailValidity] ;
 }
 
 
