@@ -9,7 +9,20 @@
 // getEmailDomain("t.mellink@novi.nl") geeft novi.nl
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
 
+function getEmailDomain(emailAddress) {
+        let emailDomain
+        let atDomain = emailAddress.lastIndexOf("@");
+        emailDomain = emailAddress.substring(atDomain+1);
+    return emailDomain;
+}
 
+/*const eeken = getEmailDomain("n.eeken@novi-education.nl")
+const mellink = getEmailDomain("t.mellink@novi.nl")
+const wiersma = getEmailDomain("a.wiersma@outlook.com")
+
+console.log(eeken);
+console.log(mellink);
+console.log(wiersma);*/
 
 
 /* Opdracht  2 */
@@ -20,6 +33,34 @@
 // typeOfEmail("novi.nlaapjesk@outlook.com") geeft geeft "Extern" <-- deze moet het ook doen!
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
 
+function typeOfEmail(emailAddress){
+        let emailOrigin;
+        switch (getEmailDomain(emailAddress)) {
+            case "novi-education.nl":
+                emailOrigin = "Student";
+                break;
+            case "novi.nl":
+                emailOrigin = "Medewerker";
+                break;
+            case "outlook.com":
+                emailOrigin = "Extern";
+                break;
+            default:
+                emailOrigin = "Unknown";
+        }
+        return emailOrigin
+}
+
+
+/*const eeken = typeOfEmail("n.eeken@novi-education.nl");
+const mellink = typeOfEmail("t.mellink@novi.nl");
+const nlaapjesk = typeOfEmail("novi.nlaapjesk@outlook.com");
+const wiersma = typeOfEmail("a.wiersma@outlook.com");
+
+console.log(eeken);
+console.log(mellink);
+console.log(nlaapjesk);
+console.log(wiersma);*/
 
 
 /* Opdracht  3 */
@@ -34,3 +75,37 @@
 // checkEmailValidity("n.eekenanovi.nl") geeft false - want geen @
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
+
+function checkEmailValidity(emailAddress){
+    let emailValidity;
+    let puntCheck = emailAddress.lastIndexOf(".");
+    let atDomain = emailAddress.lastIndexOf("@");
+    let domainPunt = emailAddress.substring(atDomain);
+
+
+
+    if (emailAddress.includes("@")){
+        emailValidity = true ;
+    } else {
+        emailValidity = false ;
+    }
+
+
+    return [emailValidity, atDomain, puntCheck, domainPunt] ;
+}
+
+
+
+const eeken = checkEmailValidity("n.eeken@novi.nl");
+const eeken2 = checkEmailValidity("n.eeken@novi-education.nl")
+const mellink = checkEmailValidity("tessmellink@novi.nl");
+const eekena = checkEmailValidity("n.eekenanovi.nl");
+const neeken =  checkEmailValidity("n.eeken@novinl.");
+const tessmellink = checkEmailValidity("tessmellink@novi,nl");
+
+console.log(eeken);
+console.log(eeken2);
+console.log(mellink);
+console.log(eekena);
+console.log(neeken);
+console.log(tessmellink);
