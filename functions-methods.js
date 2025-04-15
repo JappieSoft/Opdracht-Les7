@@ -9,6 +9,17 @@
 // getEmailDomain("t.mellink@novi.nl") geeft novi.nl
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
 
+function getEmailDomain(emailAddress) {
+        let emailDomain
+        let atDomain = emailAddress.lastIndexOf("@");
+        emailDomain = emailAddress.substring(atDomain+1);
+    return emailDomain;
+}
+
+
+console.log(getEmailDomain("n.eeken@novi-education.nl"));
+console.log(getEmailDomain("t.mellink@novi.nl"));
+console.log(getEmailDomain("a.wiersma@outlook.com"));
 
 
 
@@ -19,6 +30,31 @@
 // typeOfEmail("t.mellink@novi.nl") geeft geeft "Medewerker"
 // typeOfEmail("novi.nlaapjesk@outlook.com") geeft geeft "Extern" <-- deze moet het ook doen!
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
+
+function typeOfEmail(emailAddress){
+        let emailOrigin;
+        switch (getEmailDomain(emailAddress)) {
+            case "novi-education.nl":
+                emailOrigin = "Student";
+                break;
+            case "novi.nl":
+                emailOrigin = "Medewerker";
+                break;
+            case "outlook.com":
+                emailOrigin = "Extern";
+                break;
+            default:
+                emailOrigin = "Unknown";
+        }
+        return emailOrigin
+}
+
+
+console.log(typeOfEmail("n.eeken@novi-education.nl"));
+console.log(typeOfEmail("t.mellink@novi.nl"));
+console.log(typeOfEmail("novi.nlaapjesk@outlook.com"));
+console.log(typeOfEmail("a.wiersma@outlook.com"));
+
 
 
 
@@ -34,3 +70,36 @@
 // checkEmailValidity("n.eekenanovi.nl") geeft false - want geen @
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
+
+
+function checkEmailValidity(emailAddress){
+    let emailValidity;
+    let atPosition = emailAddress.lastIndexOf("@");
+    let puntPostion = emailAddress.lastIndexOf(".");
+
+    if (emailAddress.substring(atPosition).includes("@")){
+        if (emailAddress.substring(atPosition).includes(".")){
+            if (emailAddress.substring(puntPostion).length > 1){
+                emailValidity = true;
+            } else { emailValidity = false; }
+        } else { emailValidity = false; }
+    } else { emailValidity = false; }
+
+    return [emailValidity] ;
+}
+
+
+
+const eeken = checkEmailValidity("n.eeken@novi.nl");
+const eeken2 = checkEmailValidity("n.eeken@novi-education.nl")
+const mellink = checkEmailValidity("tessmellink@novi.nl");
+const eekena = checkEmailValidity("n.eekenanovi.nl");
+const neeken =  checkEmailValidity("n.eeken@novinl.");
+const tessmellink = checkEmailValidity("tessmellink@novi,nl");
+
+console.log(eeken);
+console.log(eeken2);
+console.log(mellink);
+console.log(eekena);
+console.log(neeken);
+console.log(tessmellink);
