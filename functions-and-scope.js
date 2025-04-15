@@ -56,7 +56,7 @@ console.log(cumLaude([8, 9, 4, 6, 10]));
 // ---- Verwachte uitkomst: 6.642857142857143
 
 
-/*let gemiddeldeGrades;
+let gemiddeldeGrades;
 let gradesTotal = 0;
 
 for (let i = 0; i < grades.length; i++){
@@ -65,7 +65,7 @@ for (let i = 0; i < grades.length; i++){
 
 gemiddeldeGrades = gradesTotal / grades.length;
 
-console.log(gemiddeldeGrades);*/
+console.log(gemiddeldeGrades);
 
 
 
